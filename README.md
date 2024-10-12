@@ -28,6 +28,9 @@ build/Release/myRayTracer > Renders/render.ppm
 └── /Renders
 
 ```
+## Devlog
+<p> Graphics HelloWorld! </p>
+<img width="397" alt="image" src="https://github.com/user-attachments/assets/e0af3b5c-bb7d-4c2e-9dc0-0800987342ff">
 
 # Reference
 [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
