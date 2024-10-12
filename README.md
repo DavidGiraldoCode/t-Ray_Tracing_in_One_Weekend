@@ -1,3 +1,5 @@
+# Ray Tracing in One Weekend (or perhaps more than one)
+
 ## To build the project in Debug mode:
 
 ```bash
@@ -19,10 +21,13 @@ build/Release/myRayTracer > Renders/render.ppm
 ```bash
 /myRayTracerProject
 │
-├── CMakeLists.txt            # The CMake configuration file
+├── CMakeLists.txt            
 ├── /build                    # Generated build folder (after running cmake)
-├── /Source                   # Your source code folder
-│   └── main.cpp              # Your main source file
-└── 
+├── /Source                   
+│   └── main.cpp              
+└── /Renders
 
 ```
+
+# Reference
+[_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
