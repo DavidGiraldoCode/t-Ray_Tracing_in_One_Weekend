@@ -2,20 +2,24 @@
 
 #include <iostream>
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-    // int width = 400;
-    // int height = 400;
+    int imageWidth = 400;
+    int imageHeight = 400;
 
-    // for(size_t j = 0; j < height; j ++)
-    // {
-    //     for(size_t i = 0; i < width; i ++)
-    //     {
-           
-    //     }
-    // }
+    // Defines the first line
+    std::cout << "P3\n" << imageWidth << ' ' << imageHeight << "\n255\n";
 
-    std::cout << "Up and running!\n";
-
+    // Goes from Top to Bottom, and Left to Right
+    for (size_t j = 0; j < imageWidth; j++)
+    {
+        for (size_t i = 0; i < imageHeight; i++)
+        {
+            int r = 0;
+            int g = 0;
+            int b = 0;
+            std::cout << r << ' ' << g << ' ' << b << '\n';
+        }
+    }
     return 0;
 }
