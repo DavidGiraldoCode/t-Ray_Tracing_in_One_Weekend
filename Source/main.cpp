@@ -11,14 +11,21 @@ int main(int argc, char *argv[])
     std::cout << "P3\n" << imageWidth << ' ' << imageHeight << "\n255\n";
 
     // Goes from Top to Bottom, and Left to Right
-    for (size_t j = 0; j < imageWidth; j++)
+    for (size_t j = 0; j < imageHeight; j++)
     {
-        for (size_t i = 0; i < imageHeight; i++)
+        for (size_t i = 0; i < imageWidth; i++)
         {
-            int r = 0;
-            int g = 0;
-            int b = 0;
-            std::cout << r << ' ' << g << ' ' << b << '\n';
+            // Normalized values [0,1]
+            auto r = double(i) / (imageWidth - 1);
+            auto g = double(j) / (imageHeight - 1);
+            auto b = 0;
+
+            // Values from [0, 255]
+            int ir = int(r * 255);
+            int ig = int(g * 255);
+            int ib = int(b * 255);
+
+            std::cout << ir << ' ' << ig << ' ' << ib << '\n';
         }
     }
     return 0;

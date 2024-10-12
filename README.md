@@ -3,7 +3,7 @@
 ```bash
 cmake -B build -DCMAKE_BUILD_TYPE=Debug
 cmake --build build --config Debug
-build/Debug/myRayTracer > render.ppm
+build/Debug/myRayTracer > Renders/render.ppm
 ```
 Here we are telling CMake to generate files for a Debug build. And the command compiles the project and creates the executable in build/Debug/
 
@@ -12,7 +12,7 @@ Here we are telling CMake to generate files for a Debug build. And the command c
 ```bash
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config release
-build/Release/myRayTracer > render.ppm
+build/Release/myRayTracer > Renders/render.ppm
 ```
 
 ## File structure
