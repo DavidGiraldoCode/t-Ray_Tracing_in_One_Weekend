@@ -1,4 +1,5 @@
 # Ray Tracing in One Weekend (or perhaps more than one)
+With this study I aim to deepen my knowledge in fundamental Computer Graphic algorithms and have fun while at it.
 
 ## To build the project in Debug mode:
 
