@@ -20,7 +20,18 @@ void setImageAndViewPort()
 
 color rayColor(const ray &r)
 {
-    return color(0, 0, 0);
+    vec3 unitDirection = unit_vector(r.direction());
+    auto a = 0.5 * (unitDirection.y() + 1.0);
+
+    //std::cout << unitDirection.y() << " unitDirection.y()\n";
+    //std::cout << a << " a\n";
+    color startColor = color(1.0, 1.0, 1.0);
+    color endColor = color(0.5, 0.7, 1.0);
+
+    color interpolatedColor = (1.0 - a) * startColor + (a * endColor);
+    //std::cout << interpolatedColor << " interpolatedColor\n";
+
+    return interpolatedColor;//(1.0 - a) * color(1.0, 1.0, 1.0) + (a * color(0.5, 0.7, 1.0));
 }
 
 int main(int argc, char *argv[])
@@ -54,8 +65,7 @@ int main(int argc, char *argv[])
     auto pixel00 = viewportUpperLeft + (0.5 * (pixelDeltaU + pixelDeltaV));
 
     // Defines the first line
-    std::cout << "P3\n"
-              << imageWidth << ' ' << imageHeight << "\n255\n";
+    std::cout << "P3\n" << imageWidth << ' ' << imageHeight << "\n255\n";
 
     // Goes from Top to Bottom, and Left to Right
     for (size_t j = 0; j < imageHeight; j++)
@@ -84,6 +94,7 @@ int main(int argc, char *argv[])
             ray r(camera, rayDirection);
 
             color pixelColor = rayColor(r);
+            //std::cout << pixelColor << " pixelColor\n";
             writeColor(std::cout , pixelColor);
         }
     }

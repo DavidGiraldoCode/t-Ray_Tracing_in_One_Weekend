@@ -9,10 +9,10 @@ using color = vec3;
 
 void writeColor(std::ostream &output, const color &pixelColor)
 {
-
-    unsigned rByte = (unsigned)pixelColor.x() * 255.999;
-    unsigned gByte = (unsigned)pixelColor.y() * 255.999;
-    unsigned bByte = (unsigned)pixelColor.z() * 255.999;
+    //std::cout << pixelColor << " pixelColor inside writeColor\n";
+    unsigned rByte = unsigned(pixelColor.x() * 255.999); // watchout (int) is NOT as int()
+    unsigned gByte = unsigned(pixelColor.y() * 255.999);
+    unsigned bByte = unsigned(pixelColor.z() * 255.999);
 
     output << rByte << ' ' << gByte << ' ' << bByte << '\n';
 };

@@ -17,3 +17,8 @@ $$
 ## Finding the viewport upper left corner point Q
 ![alt text](image-1.png)
 My approach using descriptive geometry
+
+## The graphics good-old trick
+$$
+\text{blendedValue} = (1 - \alpha) \cdot \text{startValue} + \alpha \cdot \text{endValue}
+$$
