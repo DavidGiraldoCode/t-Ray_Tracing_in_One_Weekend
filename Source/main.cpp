@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     auto aspectRatio = 16.0 / 9.0; // Always remmember the floating part
 
     // Rendered image
-    unsigned imageWidth = 400;
+    unsigned imageWidth = 800;
     unsigned imageHeight = unsigned(imageWidth / aspectRatio);
     imageHeight = imageHeight < 1 ? 1 : imageHeight; // Make sure is at least 1
 
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
     auto pixelDeltaV = viewportV / imageHeight;
 
     // Upper left pixel, check the solution using descritive geomtry
-    auto viewportUpperLeft = camera - vec3(0, 0, focalLenth) - viewportU - viewportV;
+    auto viewportUpperLeft = camera - vec3(0, 0, focalLenth) - viewportU* 0.5 - viewportV * 0.5;
     auto pixel00 = viewportUpperLeft + (0.5 * (pixelDeltaU + pixelDeltaV));
 
     // Defines the first line
