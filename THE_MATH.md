@@ -22,3 +22,26 @@ My approach using descriptive geometry
 $$
 \text{blendedValue} = (1 - \alpha) \cdot \text{startValue} + \alpha \cdot \text{endValue}
 $$
+
+## Ray-Sphere intersection
+
+$$
+(C - O + D \cdot t) \cdot (C - O + D \cdot t) = r^2
+$$
+
+Expanding this:
+
+$$
+(D \cdot D) \cdot t^2 - t \cdot [2 \cdot D \cdot (C - O)] + [(C - O) \cdot (C - O) - r^2] = 0
+$$
+
+Where the discriminant is:
+
+$$
+\text{discriminant} = b^2 - 4 \cdot a \cdot c
+$$
+
+Conditions:
+- Discriminant = 0 → one intersection
+- Discriminant > 0 → two intersections
+- Discriminant < 0 → no intersections
