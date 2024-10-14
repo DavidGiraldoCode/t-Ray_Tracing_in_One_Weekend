@@ -8,9 +8,9 @@
 - [x] **3. The `vec3` Class**
   - [x] 3.1 Color Utility Functions
 
-- [ ] **4. Rays, a Simple Camera, and Background**
-  - [ ] 4.1 The `ray` Class
-  - [ ] 4.2 Sending Rays Into the Scene
+- [x] **4. Rays, a Simple Camera, and Background**
+  - [x] 4.1 The `ray` Class
+  - [x] 4.2 Sending Rays Into the Scene
 
 - [ ] **5. Adding a Sphere**
   - [ ] 5.1 Ray-Sphere Intersection
