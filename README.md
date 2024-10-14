@@ -1,4 +1,5 @@
 # Ray Tracing in One Weekend (or perhaps more than one)
+With this study I aim to deepen my knowledge in fundamental Computer Graphic algorithms and have fun while at it.
 
 ## To build the project in Debug mode:
 
@@ -28,6 +29,9 @@ build/Release/myRayTracer > Renders/render.ppm
 └── /Renders
 
 ```
+## Devlog
+<p> Graphics HelloWorld! </p>
+<img width="397" alt="image" src="https://github.com/user-attachments/assets/e0af3b5c-bb7d-4c2e-9dc0-0800987342ff">
 
 # Reference
 [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
