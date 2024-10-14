@@ -18,10 +18,30 @@ void setImageAndViewPort()
     auto viewPortWidth = viewPortHeight * (double(imageWidth) / imageHeight);
 }
 
+bool hitSphere(const point3& center, double radius, const ray& r)
+{
+    vec3 CO = center - r.origin();
+    // Compute all the term of the quadratic formula ax^2 + by + c
+    double a = dot(r.direction(), r.direction());                       // Self-try dot(r.direction(), r.direction());
+    double b = -2.0 * dot(r.direction(), CO );                          // dot((-2 * r.direction()), (center - r.origin()) );
+    double c = dot(CO, CO) - (radius * radius);                         //dot((center - r.origin()), (center - r.origin())) - (radius * radius);
+
+    // Compute the quadratic formula
+    double discriminant = (b*b) - (4*a*c);
+
+    // discriminant == 0 -> one intersection
+    // discriminant > 0 -> two intersections
+    // discriminant < 0 -> zero intersections
+    return discriminant >= 0 ;
+}
+
 color rayColor(const ray &r)
 {
     vec3 unitDirection = unit_vector(r.direction());
     auto a = 0.5 * (unitDirection.y() + 1.0);
+
+    if(hitSphere(point3(0,0,-1), 0.5, r))
+        return color(1.0, 0, 0);
 
     //std::cout << double(unitDirection.y()) << " unitDirection.y()\n";
     //std::cout << double(a) << " a\n";
@@ -42,7 +62,7 @@ int main(int argc, char *argv[])
     auto aspectRatio = 16.0 / 9.0; // Always remmember the floating part
 
     // Rendered image
-    unsigned imageWidth = 400;
+    unsigned imageWidth = 800;
     unsigned imageHeight = unsigned(imageWidth / aspectRatio);
     imageHeight = imageHeight < 1 ? 1 : imageHeight; // Make sure is at least 1
 
@@ -61,7 +81,7 @@ int main(int argc, char *argv[])
     auto pixelDeltaV = viewportV / imageHeight;
 
     // Upper left pixel, check the solution using descritive geomtry
-    auto viewportUpperLeft = camera - vec3(0, 0, focalLenth) - viewportU - viewportV;
+    auto viewportUpperLeft = camera - vec3(0, 0, focalLenth) - viewportU* 0.5 - viewportV * 0.5;
     auto pixel00 = viewportUpperLeft + (0.5 * (pixelDeltaU + pixelDeltaV));
 
     // Defines the first line
