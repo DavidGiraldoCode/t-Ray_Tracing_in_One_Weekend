@@ -18,7 +18,8 @@ void setImageAndViewPort()
     auto viewPortWidth = viewPortHeight * (double(imageWidth) / imageHeight);
 }
 
-bool hitSphere(const point3& center, double radius, const ray& r)
+//bool
+double hitSphere(const point3& center, double radius, const ray& r)
 {
     vec3 CO = center - r.origin();
     // Compute all the term of the quadratic formula ax^2 + by + c
@@ -32,16 +33,46 @@ bool hitSphere(const point3& center, double radius, const ray& r)
     // discriminant == 0 -> one intersection
     // discriminant > 0 -> two intersections
     // discriminant < 0 -> zero intersections
-    return discriminant >= 0 ;
+    if(discriminant < 0) return -1.0; // Previously I was returning false, which will yield the purple sky
+
+    //return discriminant >= 0 ;
+    double t1 = (-b - std::sqrt(discriminant)) / (2 * a); // Missing the sqrt, the () are KEY to avoid unwanted behaviour
+    //double t2 = -b - discriminant / 2*a;
+    return t1;
 }
 
 color rayColor(const ray &r)
 {
+    point3 sphereCenter = point3(0,0,-1);
+    /*
+    if(hitSphere(point3(0,0,-1), 0.5, r) >= 0)
+    {
+        double t = hitSphere(point3(0,0,-1), 0.5, r);
+        point3 pointOnSphere = r.at(t);
+        vec3 normal = vec3(0.5, 0.5, 0.5) / (pointOnSphere - point3(0,0,-1));
+        color color = 0.5 * (normal.x() + 1.0)  
+        return  
+        //color(1.0, 0, 0);
+    }*/
+
+    double t = hitSphere(sphereCenter, 0.5, r);
+    if(t >= 0)
+    {
+        vec3 normal = unit_vector(r.at(t) - sphereCenter);
+        auto rMap = 0.5 * (normal.x() + 1.0);
+        auto gMap = 0.5 * (normal.y() + 1.0);
+        auto bMap = 0.5 * (normal.z() + 1.0);
+        //return color(rMap,gMap,bMap);
+
+        return 0.5 * color(normal.x() + 1, normal.y() + 1, normal.z() + 1);
+    }
+    
+
     vec3 unitDirection = unit_vector(r.direction());
     auto a = 0.5 * (unitDirection.y() + 1.0);
 
-    if(hitSphere(point3(0,0,-1), 0.5, r))
-        return color(1.0, 0, 0);
+    
+    
 
     //std::cout << double(unitDirection.y()) << " unitDirection.y()\n";
     //std::cout << double(a) << " a\n";
