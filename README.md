@@ -30,6 +30,11 @@ build/Release/myRayTracer > Renders/render.ppm
 
 ```
 ## Devlog
+<p> First sphere and the normals-shaded </p>
+<img width="397" alt="image" src="https://github.com/user-attachments/assets/2dc1e07a-5ca4-46b2-a6ed-e8aa2655e91a">
+<img width="397" alt="image" src="https://github.com/user-attachments/assets/d7595d90-a7b6-431a-9d25-2700507bbf3f">
+
+
 <p> Graphics HelloWorld! </p>
 <img width="397" alt="image" src="https://github.com/user-attachments/assets/e0af3b5c-bb7d-4c2e-9dc0-0800987342ff">
 
