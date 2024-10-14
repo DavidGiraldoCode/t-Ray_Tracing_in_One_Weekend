@@ -23,12 +23,12 @@ color rayColor(const ray &r)
     vec3 unitDirection = unit_vector(r.direction());
     auto a = 0.5 * (unitDirection.y() + 1.0);
 
-    //std::cout << unitDirection.y() << " unitDirection.y()\n";
-    //std::cout << a << " a\n";
+    //std::cout << double(unitDirection.y()) << " unitDirection.y()\n";
+    //std::cout << double(a) << " a\n";
     color startColor = color(1.0, 1.0, 1.0);
     color endColor = color(0.5, 0.7, 1.0);
 
-    color interpolatedColor = (1.0 - a) * startColor + (a * endColor);
+    color interpolatedColor = ((1.0 - a) * startColor) + (a * endColor);
     //std::cout << interpolatedColor << " interpolatedColor\n";
 
     return interpolatedColor;//(1.0 - a) * color(1.0, 1.0, 1.0) + (a * color(0.5, 0.7, 1.0));
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
     // Delta of pixel to pixel
     auto pixelDeltaU = viewportU / imageWidth;
-    auto pixelDeltaV = viewportV / viewPortHeight;
+    auto pixelDeltaV = viewportV / imageHeight;
 
     // Upper left pixel, check the solution using descritive geomtry
     auto viewportUpperLeft = camera - vec3(0, 0, focalLenth) - viewportU - viewportV;
@@ -99,8 +99,5 @@ int main(int argc, char *argv[])
         }
     }
     // return 0;
-
-    //std::clog << "\r imageHeight: " << imageHeight << '\n';
-
     std::clog << "\rDone.                 \n";
 }
