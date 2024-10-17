@@ -4,6 +4,7 @@
 #include "vec3.h"
 #include "color.h"
 #include "ray.h"
+#include "sphere.h"
 
 void setImageAndViewPort()
 {
@@ -19,7 +20,7 @@ void setImageAndViewPort()
 }
 
 //bool
-double hitSphere(const point3& center, double radius, const ray& r)
+double hitSphereDefault(const point3& center, double radius, const ray& r)
 {
     vec3 CO = center - r.origin();
     // Compute all the term of the quadratic formula ax^2 + by + c
@@ -39,6 +40,24 @@ double hitSphere(const point3& center, double radius, const ray& r)
     double t1 = (-b - std::sqrt(discriminant)) / (2 * a); // Missing the sqrt, the () are KEY to avoid unwanted behaviour
     //double t2 = -b - discriminant / 2*a;
     return t1;
+}
+
+double hitSphere(const point3& center, double radius, const ray& r)
+{
+    vec3 QC = (center - r.origin());
+
+    double a = r.direction().length_squared();
+    double c = QC.length_squared() - (radius * radius);
+    double h = dot(r.direction(), QC);
+
+    double discriminant = (h*h) - (a*c);
+
+    if(discriminant < 0)
+    {
+        return -1;
+    }
+    else return (h - std::sqrt(discriminant)) / a;
+    // We use (-) between h and the sqrt because a negative value int th descriminant will yield a positive result
 }
 
 color rayColor(const ray &r)
@@ -85,10 +104,46 @@ color rayColor(const ray &r)
     return interpolatedColor;//(1.0 - a) * color(1.0, 1.0, 1.0) + (a * color(0.5, 0.7, 1.0));
 }
 
+color rayColor(const ray &r, const Sphere& sphere)
+{
+    hit_record hitRecord;
+    bool hit = sphere.hit(r, 0.1, 5.0, hitRecord);
+
+    if(hit)
+    {
+        vec3 normal = hitRecord.normal;
+        auto rMap = 0.5 * (normal.x() + 1.0);
+        auto gMap = 0.5 * (normal.y() + 1.0);
+        auto bMap = 0.5 * (normal.z() + 1.0);
+        //return color(rMap,gMap,bMap);
+
+        return 0.5 * color(normal.x() + 1, normal.y() + 1, normal.z() + 1);
+    }
+    
+
+    vec3 unitDirection = unit_vector(r.direction());
+    auto a = 0.5 * (unitDirection.y() + 1.0);
+
+    
+    
+
+    //std::cout << double(unitDirection.y()) << " unitDirection.y()\n";
+    //std::cout << double(a) << " a\n";
+    color startColor = color(1.0, 1.0, 1.0);
+    color endColor = color(0.5, 0.7, 1.0);
+
+    color interpolatedColor = ((1.0 - a) * startColor) + (a * endColor);
+    //std::cout << interpolatedColor << " interpolatedColor\n";
+
+    return interpolatedColor;//(1.0 - a) * color(1.0, 1.0, 1.0) + (a * color(0.5, 0.7, 1.0));
+}
+
 int main(int argc, char *argv[])
 {
     // int imageWidth = 400;
     // int imageHeight = 400;
+    Sphere sphereA = Sphere(point3(-1,0,-1), 0.4);
+    Sphere sphereB = Sphere(point3(1,0,-1), 0.6);
 
     auto aspectRatio = 16.0 / 9.0; // Always remmember the floating part
 
@@ -144,7 +199,7 @@ int main(int argc, char *argv[])
             auto rayDirection = pixelCenter - camera;
             ray r(camera, rayDirection);
 
-            color pixelColor = rayColor(r);
+            color pixelColor = rayColor(r, sphereA);  
             //std::cout << pixelColor << " pixelColor\n";
             writeColor(std::cout , pixelColor);
         }
