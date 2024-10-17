@@ -19,7 +19,7 @@ void setImageAndViewPort()
 }
 
 //bool
-double hitSphere(const point3& center, double radius, const ray& r)
+double hitSphereDefault(const point3& center, double radius, const ray& r)
 {
     vec3 CO = center - r.origin();
     // Compute all the term of the quadratic formula ax^2 + by + c
@@ -39,6 +39,24 @@ double hitSphere(const point3& center, double radius, const ray& r)
     double t1 = (-b - std::sqrt(discriminant)) / (2 * a); // Missing the sqrt, the () are KEY to avoid unwanted behaviour
     //double t2 = -b - discriminant / 2*a;
     return t1;
+}
+
+double hitSphere(const point3& center, double radius, const ray& r)
+{
+    vec3 QC = (center - r.origin());
+
+    double a = r.direction().length_squared();
+    double c = QC.length_squared() - (radius * radius);
+    double h = dot(r.direction(), QC);
+
+    double discriminant = (h*h) - (a*c);
+
+    if(discriminant < 0)
+    {
+        return -1;
+    }
+    else return (h - std::sqrt(discriminant)) / a;
+    // We use (-) between h and the sqrt because a negative value int th descriminant will yield a positive result
 }
 
 color rayColor(const ray &r)
