@@ -4,6 +4,7 @@
 #include "vec3.h"
 #include "color.h"
 #include "ray.h"
+#include "sphere.h"
 
 void setImageAndViewPort()
 {
@@ -103,10 +104,46 @@ color rayColor(const ray &r)
     return interpolatedColor;//(1.0 - a) * color(1.0, 1.0, 1.0) + (a * color(0.5, 0.7, 1.0));
 }
 
+color rayColor(const ray &r, const Sphere& sphere)
+{
+    hit_record hitRecord;
+    bool hit = sphere.hit(r, 0.1, 5.0, hitRecord);
+
+    if(hit)
+    {
+        vec3 normal = hitRecord.normal;
+        auto rMap = 0.5 * (normal.x() + 1.0);
+        auto gMap = 0.5 * (normal.y() + 1.0);
+        auto bMap = 0.5 * (normal.z() + 1.0);
+        //return color(rMap,gMap,bMap);
+
+        return 0.5 * color(normal.x() + 1, normal.y() + 1, normal.z() + 1);
+    }
+    
+
+    vec3 unitDirection = unit_vector(r.direction());
+    auto a = 0.5 * (unitDirection.y() + 1.0);
+
+    
+    
+
+    //std::cout << double(unitDirection.y()) << " unitDirection.y()\n";
+    //std::cout << double(a) << " a\n";
+    color startColor = color(1.0, 1.0, 1.0);
+    color endColor = color(0.5, 0.7, 1.0);
+
+    color interpolatedColor = ((1.0 - a) * startColor) + (a * endColor);
+    //std::cout << interpolatedColor << " interpolatedColor\n";
+
+    return interpolatedColor;//(1.0 - a) * color(1.0, 1.0, 1.0) + (a * color(0.5, 0.7, 1.0));
+}
+
 int main(int argc, char *argv[])
 {
     // int imageWidth = 400;
     // int imageHeight = 400;
+    Sphere sphereA = Sphere(point3(-1,0,-1), 0.4);
+    Sphere sphereB = Sphere(point3(1,0,-1), 0.6);
 
     auto aspectRatio = 16.0 / 9.0; // Always remmember the floating part
 
@@ -162,7 +199,7 @@ int main(int argc, char *argv[])
             auto rayDirection = pixelCenter - camera;
             ray r(camera, rayDirection);
 
-            color pixelColor = rayColor(r);
+            color pixelColor = rayColor(r, sphereA);  
             //std::cout << pixelColor << " pixelColor\n";
             writeColor(std::cout , pixelColor);
         }
