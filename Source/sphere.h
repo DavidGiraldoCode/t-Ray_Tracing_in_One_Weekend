@@ -1,6 +1,6 @@
 #pragma once
 #include "hittable.h"
-#include "vec3.h"
+//#include "vec3.h"
 
 class Sphere : public Ihittable
 {
@@ -34,7 +34,7 @@ public:
         hitRecord.t = root;
         hitRecord.point = r.at(hitRecord.t);
         //hitRecord.normal = (hitRecord.point - m_center) / m_radius;
-        vec3 outward_normal = (hitRecord.point - m_center) / m_radius;
+        vec3 outward_normal = unit_vector((hitRecord.point - m_center) / m_radius);
         hitRecord.setFaceNormal(r, outward_normal); //Compute the direction of the normal
 
         return true;

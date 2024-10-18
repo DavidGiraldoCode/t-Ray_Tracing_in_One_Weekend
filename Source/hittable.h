@@ -1,5 +1,5 @@
 #pragma once
-#include "ray.h"
+//#include "ray.h"
 
 // Data structure to store the hit
 class hit_record
@@ -12,10 +12,9 @@ public:
 
     void setFaceNormal(const ray & r, const vec3& outward_normal)
     {
-        vec3 rDir = unit_vector(r.direction());
-        
         //we decide to have the normals always point against the ray
         /*
+        vec3 rDir = unit_vector(r.direction());
         if(dot(rDir, outward_normal) > 0) // The ray is hitting form inside
         {
             frontFace = false;
@@ -27,7 +26,7 @@ public:
             normal = outward_normal;
         }*/// A more elegant approach
 
-        frontFace = dot(rDir, outward_normal) < 0;
+        frontFace = dot(r.direction(), outward_normal) < 0;
         normal = frontFace ? outward_normal : -outward_normal;
 
     }
