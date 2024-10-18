@@ -33,7 +33,9 @@ public:
         // It pases the test, so store the hit record
         hitRecord.t = root;
         hitRecord.point = r.at(hitRecord.t);
-        hitRecord.normal = (hitRecord.point - m_center) / m_radius;
+        //hitRecord.normal = (hitRecord.point - m_center) / m_radius;
+        vec3 outward_normal = (hitRecord.point - m_center) / m_radius;
+        hitRecord.setFaceNormal(r, outward_normal); //Compute the direction of the normal
 
         return true;
     }
