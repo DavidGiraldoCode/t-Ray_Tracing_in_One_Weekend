@@ -18,7 +18,7 @@ color renderSky(double y)
 color rayColor(const ray &r, const hittable_list &world)
 {
     hit_record hitRecord;
-    if (world.hit(r, 0, infinity, hitRecord))
+    if (world.hit(r, interval(0, infinity), hitRecord))
     {
         return 0.5 * (hitRecord.normal + color(1, 1, 1));
     }

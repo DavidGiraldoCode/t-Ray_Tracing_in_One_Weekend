@@ -38,5 +38,8 @@ class Ihittable
 public:
     virtual ~Ihittable() = default;
 
-    virtual bool hit( const ray& r, double rT_Min,  double rT_Max, hit_record &hitRecord) const = 0;
+    //virtual bool hit( const ray& r, double rT_Min,  double rT_Max, hit_record &hitRecord) const = 0;
+    // With the interval abstracted
+    virtual bool hit(const ray& r, interval ray_t, hit_record& rec) const = 0;
+    
 };
