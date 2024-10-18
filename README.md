@@ -30,6 +30,9 @@ build/Release/myRayTracer > Renders/render.ppm
 
 ```
 ## Devlog
+<p>Ihittable Spheres in world</p>
+<img width="793" alt="image" src="https://github.com/user-attachments/assets/b9039013-a890-4558-a4d7-d78f3f9e7932">
+
 <p> First sphere and the normals-shaded </p>
 <img width="397" alt="image" src="https://github.com/user-attachments/assets/2dc1e07a-5ca4-46b2-a6ed-e8aa2655e91a">
 <img width="397" alt="image" src="https://github.com/user-attachments/assets/d7595d90-a7b6-431a-9d25-2700507bbf3f">
