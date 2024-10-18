@@ -16,15 +16,15 @@
   - [x] 5.1 Ray-Sphere Intersection
   - [x] 5.2 Creating Our First Raytraced Image
 
-- [ ] **6. Surface Normals and Multiple Objects**
+- [x] **6. Surface Normals and Multiple Objects**
   - [x] 6.1 Shading with Surface Normals
-  - [ ] 6.2 Simplifying the Ray-Sphere Intersection Code
-  - [ ] 6.3 An Abstraction for Hittable Objects
-  - [ ] 6.4 Front Faces Versus Back Faces
-  - [ ] 6.5 A List of Hittable Objects
-  - [ ] 6.6 Some New C++ Features
-  - [ ] 6.7 Common Constants and Utility Functions
-  - [ ] 6.8 An Interval Class
+  - [x] 6.2 Simplifying the Ray-Sphere Intersection Code
+  - [x] 6.3 An Abstraction for Hittable Objects
+  - [x] 6.4 Front Faces Versus Back Faces
+  - [x] 6.5 A List of Hittable Objects
+  - [x] 6.6 Some New C++ Features
+  - [x] 6.7 Common Constants and Utility Functions
+  - [x] 6.8 An Interval Class
 
 - [ ] **7. Moving Camera Code Into Its Own Class**
 
