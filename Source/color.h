@@ -1,6 +1,5 @@
 #pragma once
 #include "vec3.h"
-#include <iostream>
 
 using color = vec3;
 /// @brief Write a color into the ppm file

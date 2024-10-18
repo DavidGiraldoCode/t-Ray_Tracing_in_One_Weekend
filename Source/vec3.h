@@ -1,6 +1,6 @@
 #pragma once
-#include <cmath>
-#include <iostream>
+//#include <cmath>
+//#include <iostream>
 
 /// @brief Defines a 3D vector, it is used for storing colors and positions.
 class vec3 {
