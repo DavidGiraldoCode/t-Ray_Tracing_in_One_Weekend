@@ -26,7 +26,7 @@
   - [x] 6.7 Common Constants and Utility Functions
   - [x] 6.8 An Interval Class
 
-- [ ] **7. Moving Camera Code Into Its Own Class**
+- [x] **7. Moving Camera Code Into Its Own Class**
 
 - [ ] **8. Antialiasing**
   - [ ] 8.1 Some Random Number Utilities
