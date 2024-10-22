@@ -1,7 +1,7 @@
 #pragma once
 
 #include "vec3.h"
-
+/// @brief A ray that get dispatched from the camera through a pixel on the viewport and on the scene
 class ray
 {
 public:
