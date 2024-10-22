@@ -19,7 +19,8 @@ int main(int argc, char *argv[])
     cam.aspectRatio = 16.0 / 9.0;
     cam.imageWidth = 400;
 
-    cam.render(world);
+    //cam.render(world);
+    std::cout << random_double(0.0, 5.0) << " random\n";
 
     return 0;
 }
