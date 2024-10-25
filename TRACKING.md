@@ -28,9 +28,9 @@
 
 - [x] **7. Moving Camera Code Into Its Own Class**
 
-- [ ] **8. Antialiasing**
-  - [ ] 8.1 Some Random Number Utilities
-  - [ ] 8.2 Generating Pixels with Multiple Samples
+- [x] **8. Antialiasing**
+  - [x] 8.1 Some Random Number Utilities
+  - [x] 8.2 Generating Pixels with Multiple Samples
 
 - [ ] **9. Diffuse Materials**
   - [ ] 9.1 A Simple Diffuse Material
