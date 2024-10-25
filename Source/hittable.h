@@ -1,7 +1,8 @@
 #pragma once
 //#include "ray.h"
 
-// Data structure to store the hit
+/// @brief Data structure to store a hit
+/// @note It has a `point`, position `t` along the ray, `normal` of the surface of the hit, and if is a `frontFace`
 class hit_record
 {
 public:

@@ -14,7 +14,7 @@ void writeColor(std::ostream &output, const color &pixelColor)
     double g = pixelColor.y();
     double b = pixelColor.z();
 
-    static const interval intensity(0.0, 0.999);
+    static const interval intensity(0.000, 0.999);
 
     unsigned rByte = unsigned( 256 * intensity.clamp(r));
     unsigned gByte = unsigned( 256 * intensity.clamp(g));

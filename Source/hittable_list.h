@@ -31,17 +31,19 @@ public:
     /// @brief Keeps track of the closest t value for each time the ray hits something, by traversing a vector of Ihittable objects
     /// @note O(n)
     /// @param r The ray beging shoot through the pixel
-    /// @param rayT in the new interval that hold min and max
+    /// @param rayT The interval that hold min and max values of t. `rayT.max` get updated every time theres a closer hit
     /// @param rT_Min (old) Minimun t value
     /// @param rT_Max (old) Maximum t value, and closest so far
-    /// @param hitRecord The record that is being updated based on the smallest rT_Max, at the end holds the normal to shade the pixel
-    /// @return whether theres a hit or not
+    /// @param hitRecord The record that is being updated based on the smallest rT_Max (closestSoFar), at the end holds the data of the closets hit, and the normal to shade the pixel
+    /// @return whether theres a hit or not, but not specifically which object. The `hitRecord` holds that
     bool hit(const ray &r, interval rayT, /*double rT_Min, double rT_Max*/ hit_record &hitRecord) const override
     {
         hit_record temporalRecord;
         bool hitSomething = false;
         auto closestSoFar = rayT.max; //rT_Max;
 
+        // traverse the list of hittable objects, if something is hit, it stores it as the
+        // closets so far until it finds another hittable that is closer.
         for (const auto &object : objects)
         {
             if (object->hit(r, interval(rayT.min, closestSoFar), temporalRecord))
